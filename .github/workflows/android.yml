@@ -15,7 +15,8 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - uses: android-actions/setup-android@v3
+      # GitHub Ubuntu runner already includes Android SDK.
+      # Avoid setup-android requesting the obsolete "tools" package.
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
@@ -1486,5 +1487,4 @@ jobs:
           zCAqFgAAJRYAACwAAABhcHAvc3JjL21haW4vcmVzL21pcG1hcC1tZHBpL2ljX2xhdW5jaGVyLnBu
           ZwElFtrpiVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAV7ElEQVR4nHWaeZid9XXf
           P793ucvsM9JoJDHakNC+AAIBEgiDwTYoXjCOwbWxiN3nSbDd2PXSNnHtpJjYaZ6UNtR+aNykxoAb
-          E8BxbarUWMZsEjtCsgRaRrPvd+bO3d/19zv9432vJC+Z57lz5y7z3nPO75zv+Z7vuQoQfsePZdsY
-          rc89blu8iJ7NG+hYu5rs0
+          E8BxbarUWMZsEjtCsgRaRrPvd+b
