@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - 'ParaRotam_Android_v2_3_Kaynak.zip'
+      - 'ParaRotam_Hazir_Kaynak.zip'
       - '.github/workflows/android.yml'
 jobs:
   build:
@@ -14,15 +14,18 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+      - uses: android-actions/setup-android@v3
       - uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: '8.10.2'
-      - name: Extract Android project
-        run: unzip -q ParaRotam_Android_v2_3_Kaynak.zip
-      - name: Build debug APK
-        working-directory: ParaRotam_Android
-        run: gradle --no-daemon assembleDebug
+          gradle-version: '8.9'
+      - name: Extract current source
+        run: |
+          mkdir -p build-source
+          unzip -q -o ParaRotam_Hazir_Kaynak.zip -d build-source
+      - name: Build APK
+        working-directory: build-source
+        run: gradle assembleDebug --no-daemon
       - uses: actions/upload-artifact@v4
         with:
-          name: ParaRotam-v2-3-APK
-          path: ParaRotam_Android/app/build/outputs/apk/debug/app-debug.apk
+          name: ParaRotam-APK
+          path: build-source/app/build/outputs/apk/debug/*.apk
