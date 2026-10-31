@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - 'ParaRotam_Android_v2_2_Kaynak.zip'
+      - 'ParaRotam_Android_Son_Duzeltme_Kaynak.zip'
       - '.github/workflows/android.yml'
 jobs:
   build:
@@ -18,7 +18,8 @@ jobs:
         with:
           gradle-version: '8.10.2'
       - name: Extract Android project
-        run: unzip -q ParaRotam_Android_v2_2_Kaynak.zip
+        run: unzip -q ParaRotam_Android_Son_Duzeltme_Kaynak.zip
+        
       - name: Build debug APK
         working-directory: ParaRotam_Android
         run: gradle --no-daemon assembleDebug
